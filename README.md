@@ -8,6 +8,7 @@
 
 #### 相关代码：
 首先自定义列表 View ，如 ListView
+```
 public class MyListView extends ListView {
 
     private ScrollView parent;
@@ -52,8 +53,10 @@ public class MyListView extends ListView {
     }
 
 }
+```
 
 #### 布局文件代码
+```
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -112,8 +115,10 @@ public class MyListView extends ListView {
     </ScrollView>
 
 </LinearLayout>
+```
 
 #### 页面的代码 Activity
+```
 public class MainActivity extends AppCompatActivity {
 
     public List<Integer> list;
@@ -161,12 +166,14 @@ public class MainActivity extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             ImageView image = new ImageView(parent.getContext());
             image.setImageResource(getItem(position));
-            image.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            image.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 
+                                            ViewGroup.LayoutParams.MATCH_PARENT));
             image.setScaleType(ImageView.ScaleType.CENTER_CROP);
             return image;
         }
     }
 }
+```
 
 
 
