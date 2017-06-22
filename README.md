@@ -1,12 +1,10 @@
 # ScrollViewListViewClash
 ## scrollView 中嵌套 列表如 ListView 实现 ListView 可滑动功能
 #### 针对功能：
-    对一些比较复杂的内容详情页面中，涉及到某些列表的查看，即整个页面布局涉及到
-    外层 ScrollView 和内部 ListView 的嵌套。 一般直接嵌套时，ListView 不会
-    有滑动事件，因为被外层 ScrollView 给拦截了。那么，就要实现当触摸事件传到 
-    ListView 时执行 ListView 的手势事件。这是用到 ScrollView 的一个方法， 
-    requestDisallowInterceptTouchEvent(boolean scrollAble)，执行这个方法
-    可以决定是否拦截子 View 的手势事件。
+    对一些比较复杂的内容详情页面中，涉及到某些列表的查看，即整个页面布局涉及到外层 ScrollView 和内部 ListView 的嵌套。
+    一般直接嵌套时，ListView 不会有滑动事件，因为被外层 ScrollView 给拦截了。那么，就要实现当触摸事件传到 ListView 时
+    执行 ListView 的手势事件。这是用到 ScrollView 的一个方法，requestDisallowInterceptTouchEvent(boolean scrollAble)，
+    执行这个方法 可以决定是否拦截子 View 的手势事件。
 
 #### 相关代码：
 首先自定义列表 View ，如 ListView
@@ -30,20 +28,23 @@ public class MyListView extends ListView {
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         switch (ev.getAction()){
             case MotionEvent.ACTION_DOWN:
-                setParentScrollAble(false);//当触摸 ListView 区域时禁止外层 ScrollView 拦截子 View 的手势事件
+                //当触摸 ListView 区域时禁止外层 ScrollView 拦截子 View 的手势事件
+                setParentScrollAble(false);
                 break;
             case MotionEvent.ACTION_MOVE:
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
-                setParentScrollAble(true);//当手势事件取消时，让外层 ScrollView 获取到手势事件
+                //当手势事件取消时，让外层 ScrollView 获取到手势事件
+                setParentScrollAble(true);
                 break;
         }
 
         return super.onInterceptTouchEvent(ev);
     }
     private void setParentScrollAble(boolean scrollAble){
-        parent.requestDisallowInterceptTouchEvent(!scrollAble); // 此方法可决定 ScrollView 是否会拦截子 View的手势事件 
+        // 此方法可决定 ScrollView 是否会拦截子 View的手势事件
+        parent.requestDisallowInterceptTouchEvent(!scrollAble);  
     }
 
     public void setParentScrollView(ScrollView scrollView){
@@ -133,8 +134,8 @@ public class MainActivity extends AppCompatActivity {
                 list.add(R.mipmap.pic2);
             }
         }
-        listView.setParentScrollView(scrollView);
-        listView.setAdapter(new MyAdapter());
+        listView.setParentScrollView(scrollView);//设置对应的 ScrollView 
+        listView.setAdapter(new MyAdapter());
 
 
     }
