@@ -1,9 +1,12 @@
 # ScrollViewListViewClash
 ## scrollView 中嵌套 列表如 ListView 实现 ListView 可滑动功能
 #### 针对功能：
-    对一些比较复杂的内容详情页面中，涉及到某些列表的查看，即整个页面布局涉及到外层 ScrollView 和内部 ListView 的嵌套。
-    一般直接嵌套时，ListView 不会有滑动事件，因为被外层 ScrollView 给拦截了。那么，就要实现当触摸事件传到 ListView 时执行 ListView 的手势事件。
-    这是用到 ScrollView 的一个方法， requestDisallowInterceptTouchEvent(boolean scrollAble)，执行这个方法可以决定是否拦截子 View 的手势事件。
+    对一些比较复杂的内容详情页面中，涉及到某些列表的查看，即整个页面布局涉及到
+    外层 ScrollView 和内部 ListView 的嵌套。 一般直接嵌套时，ListView 不会
+    有滑动事件，因为被外层 ScrollView 给拦截了。那么，就要实现当触摸事件传到 
+    ListView 时执行 ListView 的手势事件。这是用到 ScrollView 的一个方法， 
+    requestDisallowInterceptTouchEvent(boolean scrollAble)，执行这个方法
+    可以决定是否拦截子 View 的手势事件。
 
 #### 相关代码：
 首先自定义列表 View ，如 ListView
